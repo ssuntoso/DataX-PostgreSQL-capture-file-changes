@@ -1,0 +1,56 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 4
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.1
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "postgresqlreader",
+                    "parameter": {
+                        "username": "admin",
+                        "password": "admin",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "SELECT CAST(timestamp AS VARCHAR), is_ready, number, CAST(id AS VARCHAR), CAST(content AS VARCHAR), CAST(extra_remark AS VARCHAR), num_double, CAST(time_created AS VARCHAR), CAST(date_created AS VARCHAR) FROM test_data WHERE timestamp >= '2024-06-07 06:42:58.628210+00:00' AND timestamp < '2024-06-07 06:42:58.628210+00:00'"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:postgresql://172.17.0.2:5432/postgres"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "txtfilewriter",
+                    "parameter": {
+                        "path": "/opt/datax/src/result",
+                        "fileName": "captured_raw_DBdata",
+                        "writeMode": "append",
+                        "dateFormat": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+                        "nullFormat": "\\N",
+                        "fileFormat": "csv",
+                        "header": [
+                            "timestamp",
+                            "is_ready",
+                            "number",
+                            "id",
+                            "content",
+                            "extra_remark",
+                            "num_double",
+                            "time_created",
+                            "date_created"
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

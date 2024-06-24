@@ -19,7 +19,7 @@ COPY datax/plugin/reader/postgresqlreader /opt/datax/plugin/reader/postgresqlrea
 COPY datax/plugin/writer/txtfilewriter /opt/datax/plugin/writer/txtfilewriter
 
 # copy datax script to auto change last runtime
-COPY run_datax_pg.py /opt/datax/
+# COPY run_datax_pg.py /opt/datax/
 
 ENTRYPOINT [ "python3" ]
-CMD [ "/opt/datax/run_datax_pg.py", "/opt/datax/bin/datax.py", "/opt/datax/src/config/config.json", "/opt/datax/src/result" ]
+CMD [ "/opt/datax/bin/datax.py", "/opt/datax/src/config/config.json" ]
